@@ -185,7 +185,7 @@ void draw()
       break;
     case "GANAR":
       Jam.stop();
-      image(imagen_ganar,0,0, width, height);
+      image(imagen_ganar,0,0, width/7, height/4);
       if (frameCount % 120 == 0) {
          tt += 1;
       }
@@ -199,7 +199,7 @@ void draw()
       break;
     case "PERDER":
       Jam.stop();
-      image(imagen_perder,0,0, width, height);
+      image(imagen_perder,width/7, height/4);
       if (frameCount % 120 == 0) {
          tt += 1;
       }
