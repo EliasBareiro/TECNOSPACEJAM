@@ -50,9 +50,9 @@ void setup()
   
   GameState = "JUEGO";
   
-  //camara = new Capture(this, ancho, alto);
-  //camara.start();
-  //opencv = new OpenCV(this, ancho, alto);
+  camara = new Capture(this, ancho, alto);
+  camara.start();
+  opencv = new OpenCV(this, ancho, alto);
   
   imagen_pelota_basket1 = loadImage("Pelota 1.png");
   imagen_pelota_basket2 = loadImage("Pelota 2.png");
@@ -126,16 +126,16 @@ void draw()
       world.step();
       world.draw(this);
   
-     // if (camara.available()){
-       // camara.read();
-        //opencv.loadImage(camara);
-        //opencv.threshold(umbral);
-        //PVector pixelMasBrillante = opencv.max();
+      if (camara.available()){
+        camara.read();
+        opencv.loadImage(camara);
+        opencv.threshold(umbral);
+        PVector pixelMasBrillante = opencv.max();
         //image(camara, 0, 0);
         //stroke(255, 0, 0);
         //ellipse(pixelMasBrillante.x, pixelMasBrillante.y, 30, 30);
         cadena.setTarget(mouseX, mouseY/*pixelMasBrillante.x, pixelMasBrillante.y*/);
-        //}
+        }
       
   
       // --------------- dibujo los puntos y las vidas ------------
@@ -185,10 +185,30 @@ void draw()
     case "GANAR":
       Jam.stop();
       image(imagen_ganar,0,0, width, height);
+      if (frameCount % 120 == 0) {
+         tt += 1;
+      }
+      if(tt == 3){
+         GameState = "JUEGO";
+         puntos = 0;
+         vidas = 3;
+         t = 0;
+         tt = 0;
+      }
       break;
     case "PERDER":
       Jam.stop();
       image(imagen_perder,0,0, width, height);
+      if (frameCount % 120 == 0) {
+         tt += 1;
+      }
+      if(tt == 3){
+         GameState = "JUEGO";
+         puntos = 0;
+         vidas = 3;
+         t = 0;
+         tt = 0;
+      }
       break;
     default:  
       break;
