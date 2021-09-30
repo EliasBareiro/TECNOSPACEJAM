@@ -17,6 +17,7 @@ int alto = 600;
 
 import fisica.*;
 int t = 0;
+int tt = 0;
 boolean cajaquerepele = false;
 
 boolean repeler = false;
